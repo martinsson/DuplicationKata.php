@@ -1,0 +1,21 @@
+{
+    "name": "johan/duplication-kata.php",
+    "description": "a port to php of llewelly falco's duplication kata",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "johan martinsson",
+            "email": "jm1974@hotmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"": "src/"}
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^5.5",
+        "approvals/approval-tests": "^1.2"
+    }
+
+}
