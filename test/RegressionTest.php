@@ -21,9 +21,9 @@ class RegressionTest extends \PHPUnit\Framework\TestCase {
   {
     $song = new Lesson21();
     $names = ["Llewellyn", "Samatha", "Tomas", "Emilia"];
-    $song->singSong(1, $names);
-    $song->singSong(2, $names);
-    $song->singSong(3, $names);
+    $song->singSong(new StartsWithL(), $names);
+    $song->singSong(new ContainsAm(), $names);
+    $song->singSong(new NeverSpecialName(), $names);
     Approvals::verifyString($song->song);
   }
 

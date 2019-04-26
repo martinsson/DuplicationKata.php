@@ -2,42 +2,58 @@
 
 class Lesson21 extends Song
 {
-  public function singSong($style, $names)
-  {
-    switch ($style)
+    public function singSong($specialName, $names)
     {
-      case 1:
-        foreach ($names as $name)
-        {
-          if (strpos($name, "L") === 0)
-          {
-            $this->sing("Hip Hip Horray! For " . $name);
-          }
-          else
-          {
-            $this->sing("Hello " . $name . ", it's nice to meet you.");
-          }
+        foreach ($names as $name) {
+            if ($specialName->isSpecialName($name)) {
+                $this->sing($specialName->start . $name);
+            } else {
+                $this->sing("Hello " . $name . ", it's nice to meet you.");
+            }
         }
-        break;
-      case 2 :
-          foreach ($names as $name)
-        {
-          if (strpos($name, "am") === 1)
-          {
-            $this->sing("Say yeah! Say yo! Say " . $name);
-          }
-          else
-          {
-            $this->sing("Hello " . $name . ", it's nice to meet you.");
-          }
-        }
-        break;
-      case 3 :
-          foreach ($names as $name)
-        {
-          $this->sing("Hello " . $name . ", it's nice to meet you.");
-        }
-        break;
+
     }
-  }
+
+
 }
+
+
+interface SpecialName
+{
+
+    public function isSpecialName($name);
+}
+
+class NeverSpecialName implements SpecialName
+{
+
+    var $start = "";
+
+    public function isSpecialName($name)
+    {
+        return false;
+    }
+}
+
+class ContainsAm implements SpecialName
+{
+
+    var $start = "Say yeah! Say yo! Say ";
+
+    public function isSpecialName($name)
+    {
+        return strpos($name, "am") === 1;
+    }
+}
+
+class StartsWithL implements SpecialName
+{
+
+    var $start = "Hip Hip Horray! For ";
+
+    public function isSpecialName($name)
+    {
+        return strpos($name, "L") === 0;
+    }
+}
+
