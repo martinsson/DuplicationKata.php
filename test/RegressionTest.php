@@ -1,5 +1,4 @@
 <?php
-use ApprovalTests\Approvals;
 
 class RegressionTest extends \PHPUnit\Framework\TestCase {
 
@@ -7,14 +6,16 @@ class RegressionTest extends \PHPUnit\Framework\TestCase {
   {
     $song = new Lesson1Straight();
     $song->singCatSong();
-    Approvals::approveString($song->song);
+    $expected = $this->readApprovedFile("testCat");
+    $this->assertEquals($expected, $song->song);
   }
 
   public function testBeer()
   {
     $song = new Lesson2Variable();
     $song->singBottlesOfBeer();
-    Approvals::verifyString($song->song);
+    $expected = $this->readApprovedFile("testBeer");
+    $this->assertEquals($expected, $song->song);
   }
 
   public function testNames()
@@ -24,14 +25,18 @@ class RegressionTest extends \PHPUnit\Framework\TestCase {
     $song->singSong(1, $names);
     $song->singSong(2, $names);
     $song->singSong(3, $names);
-    Approvals::verifyString($song->song);
+
+    $expected = $this->readApprovedFile("testNames");
+    $this->assertEquals($expected, $song->song);
   }
 
   public function testNumbers()
   {
     $song = new Lesson3HigherOrderFunctions();
     $song->singCheers();
-    Approvals::verifyString($song->song);
+
+    $expected = $this->readApprovedFile("testNumbers");
+    $this->assertEquals($expected, $song->song);
   }
 
   public function testNames3()
@@ -41,6 +46,18 @@ class RegressionTest extends \PHPUnit\Framework\TestCase {
     $song->singSong(1, $names);
     $song->singSong(2, $names);
     $song->singSong(3, $names);
-    Approvals::verifyString($song->song);
+
+    $expected = $this->readApprovedFile("testNames3");
+    $this->assertEquals($expected, $song->song);
   }
+
+    /**
+     * @param string $testname
+     * @return false|string
+     */
+    private function readApprovedFile($testname)
+    {
+        $expected = file_get_contents(__DIR__ . "/approvals/RegressionTest.{$testname}.approved.txt", true);
+        return $expected;
+    }
 }

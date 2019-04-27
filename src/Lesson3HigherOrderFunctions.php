@@ -23,7 +23,7 @@ class Lesson3HigherOrderFunctions extends Song
     $this->sing($number . "! ");
     $this->sing("These are the primes, that we find fine!");
   }
-  private function getNextPrime(int $number)
+  private function getNextPrime($number)
   {
     switch ($number)
     {
