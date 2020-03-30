@@ -13,4 +13,10 @@ class Song
     {
         $this->song .= $line . "\n";
     }
+
+    public function singFullSong($fullSong) {
+        foreach (preg_split('/^.*$/', $fullSong ) as $line) {
+            $this->sing($line);
+        }
+    }
 }
