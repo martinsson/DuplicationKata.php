@@ -16,9 +16,9 @@ class Song
         $this->song .= $line . "\n";
     }
 
-    public function singFullSong($fullSong)
+    public function singLines($lines)
     {
-        foreach (preg_split('/\n/', $fullSong) as $line) {
+        foreach (preg_split('/\n/', $lines) as $line) {
             $this->sing($line);
         }
     }
@@ -36,7 +36,7 @@ class Song
     public function toLineNb($lineNb) {
         $step = $this->startingLine - $lineNb > 0 ? -1 : 1;
         for($currentLine = $this->startingLine; $currentLine != $lineNb + $step; $currentLine += $step) {
-            $this->singFullSong(sprintf( $this->songPattern, $currentLine, $currentLine + $step ));
+            $this->singLines(sprintf( $this->songPattern, $currentLine, $currentLine + $step ));
         }
     }
 }
