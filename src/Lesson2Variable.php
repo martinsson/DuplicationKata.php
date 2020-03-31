@@ -4,13 +4,10 @@ class Lesson2Variable extends Song
 {
   public function singBottlesOfBeer()
   {
-    $this->sing("100 bottles of beer on the wall");
-    $this->sing("100 bottles of beer");
-    $this->sing("Take one down, pass it around");
-    $this->sing("99 bottles of beer on the wall");
-    $this->sing("99 bottles of beer on the wall");
-    $this->sing("99 bottles of beer");
-    $this->sing("Take one down, pass it around");
-    $this->sing("98 bottles of beer on the wall");
+    $this->singPattern( '%1$d bottles of beer on the wall' . PHP_EOL .
+        '%1$d bottles of beer' . PHP_EOL .
+        'Take one down, pass it around' . PHP_EOL .
+        '%2$d bottles of beer on the wall'
+    )->fromLineNb(100)->toLineNb(99);
   }
 }
