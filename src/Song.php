@@ -39,4 +39,24 @@ class Song
             $this->singLines(sprintf( $this->songPattern, $currentLine, $currentLine + $step ));
         }
     }
+
+    /**
+     * @param $style
+     * @return mixed
+     */
+    public function composeSongStyle($defaultLine, $style)
+    {
+        $songStyles = [
+            SongPattern::create($defaultLine)
+                ->registerSpecialLine("Hip Hip Horray! For %s")
+                ->when(Word::startsWith('L')),
+            SongPattern::create($defaultLine)
+                ->registerSpecialLine("Say yeah! Say yo! Say %s")
+                ->when(Word::contains('am', 1)),
+            SongPattern::create($defaultLine)
+        ];
+
+        $songStyle = $songStyles[$style - 1];
+        return $songStyle;
+    }
 }
