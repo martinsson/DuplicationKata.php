@@ -4,40 +4,36 @@ class Lesson21 extends Song
 {
   public function singSong($style, $names)
   {
-    switch ($style)
+    $songStyles = [
+        SongStyle::create()
+            ->registerSpecialLine("Hip Hip Horray! For %s")
+            ->when(
+                function($name) {
+                    return strpos($name, "L") === 0;
+                }
+            ),
+        SongStyle::create()
+            ->registerSpecialLine("Say yeah! Say yo! Say %s")
+            ->when(
+                function($name) {
+                    return strpos($name, "am") === 1;
+                }
+            ),
+        SongStyle::create()
+    ];
+
+    $songStyle = $songStyles[$style-1];
+    foreach ($names as $name)
     {
-      case 1:
-        foreach ($names as $name)
-        {
-          if (strpos($name, "L") === 0)
-          {
-            $this->sing("Hip Hip Horray! For " . $name);
-          }
-          else
-          {
-            $this->sing("Hello " . $name . ", it's nice to meet you.");
-          }
-        }
-        break;
-      case 2 :
-          foreach ($names as $name)
-        {
-          if (strpos($name, "am") === 1)
-          {
-            $this->sing("Say yeah! Say yo! Say " . $name);
-          }
-          else
-          {
-            $this->sing("Hello " . $name . ", it's nice to meet you.");
-          }
-        }
-        break;
-      case 3 :
-          foreach ($names as $name)
-        {
-          $this->sing("Hello " . $name . ", it's nice to meet you.");
-        }
-        break;
+      if ($songStyle->hasSpecialLineFor($name))
+      {
+        $this->sing( $songStyle->saySpecialLineFor($name) );
+      }
+      else
+      {
+        $this->sing("Hello " . $name . ", it's nice to meet you.");
+      }
     }
   }
+
 }
