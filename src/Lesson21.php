@@ -20,18 +20,10 @@ class Lesson21 extends Song
         $songStyles = [
             SongStyle::create()
                 ->registerSpecialLine("Hip Hip Horray! For %s")
-                ->when(
-                    function ($name) {
-                        return strpos($name, "L") === 0;
-                    }
-                ),
+                ->when(Word::startsWith('L')),
             SongStyle::create()
                 ->registerSpecialLine("Say yeah! Say yo! Say %s")
-                ->when(
-                    function ($name) {
-                        return strpos($name, "am") === 1;
-                    }
-                ),
+                ->when(Word::contains('am', 1)),
             SongStyle::create()
         ];
 
