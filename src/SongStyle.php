@@ -4,6 +4,8 @@
 class SongStyle
 {
 
+    private $defaultLine;
+
     public static function create() {
         return new self();
     }
@@ -33,5 +35,21 @@ class SongStyle
     {
         return sprintf($this->specialLine, $name);
     }
+
+    public function sayDefaultLine($name)
+    {
+        $this->defaultLine = "Hello %s, it's nice to meet you.";
+        return sprintf($this->defaultLine, $name);
+    }
+
+    public function sayLineFor($name)
+    {
+        if ($this->hasSpecialLineFor($name)) {
+            return $this->saySpecialLineFor($name);
+        } else {
+            return $this->sayDefaultLine($name);
+        }
+    }
+
 
 }

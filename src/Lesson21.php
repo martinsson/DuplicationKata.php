@@ -7,14 +7,7 @@ class Lesson21 extends Song
       $songStyle = $this->composeSongStyle($style);
       foreach ($names as $name)
         {
-          if ($songStyle->hasSpecialLineFor($name))
-          {
-            $this->sing( $songStyle->saySpecialLineFor($name) );
-          }
-          else
-          {
-            $this->sing("Hello " . $name . ", it's nice to meet you.");
-          }
+            $this->sing( $songStyle->sayLineFor($name) );
         }
   }
 
@@ -45,5 +38,4 @@ class Lesson21 extends Song
         $songStyle = $songStyles[$style - 1];
         return $songStyle;
     }
-
 }
