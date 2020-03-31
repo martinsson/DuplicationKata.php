@@ -6,12 +6,16 @@ class SongStyle
 
     private $defaultLine;
 
-    public static function create() {
-        return new self();
+    public static function create($defaultLine) {
+        return new self($defaultLine);
     }
     private $specialLine = '';
 
     private $condition = null;
+
+    public function __construct($defaultLine) {
+        $this->defaultLine = $defaultLine;
+    }
 
     public function registerSpecialLine($line) {
         $this->specialLine = $line;
@@ -38,7 +42,6 @@ class SongStyle
 
     public function sayDefaultLine($name)
     {
-        $this->defaultLine = "Hello %s, it's nice to meet you.";
         return sprintf($this->defaultLine, $name);
     }
 
