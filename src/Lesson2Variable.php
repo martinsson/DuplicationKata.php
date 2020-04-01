@@ -9,7 +9,7 @@ class Lesson2Variable extends Song
           'Take one down, pass it around' . PHP_EOL .
           '%2$d bottles of beer on the wall'
       );
-    $this->singLines(
+    $this->singPattern(
         $songPattern->repeatFor([
             [100, 99],
             [99, 98]

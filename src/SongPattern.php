@@ -5,6 +5,7 @@ class SongPattern
 {
 
     protected $line;
+    protected $lines;
 
     public function __construct($defaultLine)
     {
@@ -28,10 +29,18 @@ class SongPattern
 
     public function repeatFor($words)
     {
-        $lines = [];
         foreach ($words as $word) {
-            $lines[] = $this->sayLineFor($word);
+            $this->lines[] = $this->sayLineFor($word);
         }
-        return implode(PHP_EOL, $lines);
+        return $this;
+    }
+
+    public function endsWith($line) {
+        $this->lines[] = $line;
+        return $this;
+    }
+
+    public function singIt() {
+        return implode(PHP_EOL, $this->lines);
     }
 }

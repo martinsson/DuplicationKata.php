@@ -5,10 +5,13 @@ class Lesson3HigherOrderFunctions extends Song
   public function singCheers()
   {
       $songPattern = new SongPattern("%d! ");
-      $this->singLines($songPattern->repeatFor(Count::from(2)->to(8)->stepBy([$this,'getNextEven'])));
-    $this->sing("Who do we appreciate?");
-    $this->singLines($songPattern->repeatFor(Count::from(17)->to(29)->stepBy([$this, 'getNextPrime'])));
-    $this->sing("These are the primes, that we find fine!");
+      $this->singPattern(
+          $songPattern
+              ->repeatFor(Count::from(2)->to(8)->stepBy([$this,'getNextEven']))
+              ->endsWith("Who do we appreciate?")
+              ->repeatFor(Count::from(17)->to(29)->stepBy([$this, 'getNextPrime']))
+              ->endsWith("These are the primes, that we find fine!")
+      );
   }
   public function getNextPrime(int $number)
   {

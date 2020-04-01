@@ -6,6 +6,6 @@ class Lesson21 extends Song
   {
       $songStyle = SongComposer::composeWithStyle("Hello %s, it's nice to meet you.", $style);
 
-      $this->singLines($songStyle->repeatFor($names));
+      $this->singPattern($songStyle->repeatFor($names));
   }
 }
